@@ -8,10 +8,10 @@ const Panel = ({ items }) => {
     <div className="panel">
       <div className="panel__items">
         {items.map(item => (
-          <Card text={item.text} key={item.text} />
+          <Card>{item.text}</Card>
         ))}
-        <AddForm />
       </div>
+      <AddForm />
     </div>
   );
 };

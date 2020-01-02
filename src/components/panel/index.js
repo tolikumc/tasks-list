@@ -1,21 +1,16 @@
 import React from 'react';
 import './index.scss';
 import Card from '../card';
-import addIcon from '../../static/img/plus.svg';
+import { AddForm } from '../add-form';
 
 const Panel = ({ items }) => {
   return (
     <div className="panel">
       <div className="panel__items">
         {items.map(item => (
-          <Card text={item.text} />
+          <Card text={item.text} key={item.text} />
         ))}
-      </div>
-      <div className="panel__button">
-        <div className="panel__button-add-btn">
-          <img src={addIcon} alt="plus" />
-          <span>Add new task</span>
-        </div>
+        <AddForm />
       </div>
     </div>
   );

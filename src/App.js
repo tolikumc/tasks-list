@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.scss';
+import Card from './components/card';
 
 function App() {
   return (
     <div className="App">
-      <h3>hello!</h3>
+      <Card text={'Hello'} />
     </div>
   );
 }

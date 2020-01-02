@@ -1,6 +1,25 @@
-.panel{
-  border-right: 3px;
+.panel {
+  border-radius: 3px;
   background: #dfe3e6;
-  padding: 12px;
   width: 212px;
+  &__items {
+    padding: 12px 12px 0 12px;
+  }
+  &__button {
+    &-add-btn {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      border-radius: 0 0 3px 3px;
+      color: #6b808c;
+      &:hover {
+        background-color: darken(#dfe3e6, 10);
+        color: darken(#6b808c, 50);
+        cursor: pointer;
+      }
+      img {
+        margin-right: 8px;
+      }
+    }
+  }
 }

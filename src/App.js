@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.scss';
 import Card from './components/card';
+import Panel from './components/panel';
 
 function App() {
   return (
     <div className="App">
-      <Card text={'Hello'} />
+      <Panel>
+        <Card text={'Hello'} />
+      </Panel>
     </div>
   );
 }

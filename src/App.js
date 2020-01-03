@@ -1,18 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Panel from './components/panel';
+import Panels from './components/panel/container';
 
 function App() {
   return (
     <div className="App">
-      <Panel
-        items={[
-          { text: 'Learn React.js' },
-          { text: 'Cancel appointment' },
-          { text: 'Find designer' }
-        ]}
-      />{' '}
-      <Panel items={null} />
+      <Panels />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Button from '../button';
 import wrong from '../../static/img/wrong.svg';
 import addIcon from '../../static/img/plus.svg';
 
-export const AddForm = () => {
+export const AddForm = ({ isEmptyPanel }) => {
   const [show, setShow] = useState(false);
   const inputRef = useRef(null);
 
@@ -21,10 +21,18 @@ export const AddForm = () => {
         <div className="add-form">
           <div className="add-form__input">
             <Card>
-              <textarea rows="3" ref={inputRef} />
+              <textarea
+                rows="3"
+                ref={inputRef}
+                placeholder={
+                  isEmptyPanel ? 'Enter task name' : 'Enter panel name'
+                }
+              />
             </Card>
             <div className="add-form__bottom">
-              <Button>Add new task</Button>
+              <Button>
+                {isEmptyPanel ? 'Enter task name' : 'Enter panel name'}
+              </Button>
               <img
                 src={wrong}
                 className="add-form__bottom-wrong"
@@ -41,7 +49,7 @@ export const AddForm = () => {
             onClick={() => setShow(true)}
           >
             <img src={addIcon} alt="plus" />
-            <span>Add new task</span>
+            <span>{isEmptyPanel ? 'Enter task name' : 'Enter panel name'}</span>
           </div>
         </div>
       )}

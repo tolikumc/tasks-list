@@ -4,17 +4,22 @@ import Card from '../card';
 import { AddForm } from '../add-form';
 import classNames from 'classnames';
 
-const Panel = ({ items }) => {
+const Panel = ({ title, cards }) => {
   return (
-    <div className={classNames('panel', { 'panel--empty': !items })}>
-      {items && (
+    <div className={classNames('panel', { 'panel--empty': !cards })}>
+      {title && (
+        <div className="panel__title">
+          <b>{title}</b>
+        </div>
+      )}
+      {cards && (
         <div className="panel__items">
-          {items.map((item, index) => (
-            <Card key={index}>{item.text}</Card>
+          {cards.map((item, index) => (
+            <Card key={index}>{item}</Card>
           ))}
         </div>
       )}
-      <AddForm />
+      <AddForm isEmptyPanel={cards} />
     </div>
   );
 };

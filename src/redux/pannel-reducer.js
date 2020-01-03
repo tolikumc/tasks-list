@@ -5,11 +5,7 @@ const initialState = {
   panel: [
     {
       title: 'plan for the month',
-      card: [
-        { text: 'Learn React.js' },
-        { text: 'Cancel appointment' },
-        { text: 'Find designer' }
-      ]
+      cards: ['Learn React.js', 'Cancel appointment', 'Find designer']
     }
   ]
 };
@@ -23,7 +19,16 @@ const panelReducer = (state = initialState, action) => {
       };
     case ADD_CARD:
       return {
-        ...state
+        ...state,
+        panel: state.panel.map((item, index) => {
+          if (action.payload.idx === index) {
+            return {
+              ...item,
+              cards: [...item.cards, action.payload.text]
+            };
+          }
+          return item;
+        })
       };
     default:
       return state;

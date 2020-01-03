@@ -1,5 +1,22 @@
 .add-form {
   padding: 0 12px 12px 12px;
+  &__button {
+    &-add-btn {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      border-radius: 0 0 3px 3px;
+      color: #6b808c;
+      &:hover {
+        background-color: darken(#dfe3e6, 10);
+        color: darken(#6b808c, 50);
+        cursor: pointer;
+      }
+      img {
+        margin-right: 8px;
+      }
+    }
+  }
   &__input {
     textarea {
       border: 0;

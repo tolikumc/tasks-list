@@ -11,7 +11,8 @@ function App() {
           { text: 'Cancel appointment' },
           { text: 'Find designer' }
         ]}
-      />
+      />{' '}
+      <Panel items={null} />
     </div>
   );
 }

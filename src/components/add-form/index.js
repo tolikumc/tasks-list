@@ -35,8 +35,11 @@ export const AddForm = () => {
           </div>
         </div>
       ) : (
-        <div className="panel__button">
-          <div className="panel__button-add-btn" onClick={() => setShow(true)}>
+        <div className="add-form__button">
+          <div
+            className="add-form__button-add-btn"
+            onClick={() => setShow(true)}
+          >
             <img src={addIcon} alt="plus" />
             <span>Add new task</span>
           </div>

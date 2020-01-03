@@ -2,6 +2,7 @@ import React from 'react';
 import './index.scss';
 import Card from '../card';
 import { AddForm } from '../add-form';
+import deleteImg from '../../static/img/wrong.svg';
 import classNames from 'classnames';
 
 const Panel = ({ title, cards }) => {
@@ -10,6 +11,7 @@ const Panel = ({ title, cards }) => {
       {title && (
         <div className="panel__title">
           <b>{title}</b>
+          <img src={deleteImg} alt="delete" />
         </div>
       )}
       {cards && (

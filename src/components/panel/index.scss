@@ -4,9 +4,14 @@
   width: 212px;
   overflow: hidden;
   margin-right: 12px;
-  &__title{
+  &__title {
     padding: 12px 12px 0 12px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    img{
+      cursor: pointer;
+      width: 12px;
+    }
   }
   &--empty {
     .add-form {

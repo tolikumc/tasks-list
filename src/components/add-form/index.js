@@ -5,8 +5,9 @@ import Button from '../button';
 import wrong from '../../static/img/wrong.svg';
 import addIcon from '../../static/img/plus.svg';
 
-export const AddForm = ({ isEmptyPanel }) => {
+export const AddForm = ({ isEmptyPanel, onAddPanel, onAddCard, panelIdx }) => {
   const [show, setShow] = useState(false);
+  const [value, setValue] = useState('');
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +16,16 @@ export const AddForm = ({ isEmptyPanel }) => {
     }
   }, [show]);
 
+  const onAdd = () => {
+    if (isEmptyPanel) {
+      onAddCard(panelIdx, value);
+      setValue('');
+      setShow(false);
+    } else {
+      onAddPanel(value);
+    }
+  };
+
   return (
     <>
       {show ? (
@@ -22,6 +33,8 @@ export const AddForm = ({ isEmptyPanel }) => {
           <div className="add-form__input">
             <Card>
               <textarea
+                value={value}
+                onChange={e => setValue(e.target.value)}
                 rows="3"
                 ref={inputRef}
                 placeholder={
@@ -30,7 +43,7 @@ export const AddForm = ({ isEmptyPanel }) => {
               />
             </Card>
             <div className="add-form__bottom">
-              <Button>
+              <Button click={onAdd}>
                 {isEmptyPanel ? 'Enter task name' : 'Enter panel name'}
               </Button>
               <img

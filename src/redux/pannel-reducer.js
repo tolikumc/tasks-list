@@ -6,6 +6,10 @@ const initialState = {
     {
       title: 'plan for the month',
       cards: ['Learn React.js', 'Cancel appointment', 'Find designer']
+    },
+    {
+      title: 'plan for the month',
+      cards: ['Learn React.js', 'Cancel appointment', 'Find designer']
     }
   ]
 };
@@ -13,6 +17,7 @@ const initialState = {
 const panelReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PANEL:
+      console.log(action);
       return {
         ...state,
         panel: action.payload
@@ -21,7 +26,7 @@ const panelReducer = (state = initialState, action) => {
       return {
         ...state,
         panel: state.panel.map((item, index) => {
-          if (action.payload.idx === index) {
+          if (action.payload.panelIdx === index) {
             return {
               ...item,
               cards: [...item.cards, action.payload.text]
@@ -35,3 +40,13 @@ const panelReducer = (state = initialState, action) => {
   }
 };
 export default panelReducer;
+
+export const addPanelAC = name => ({
+  type: ADD_PANEL,
+  payload: name
+});
+
+export const addCardAC = (panelIdx, text) => ({
+  type: ADD_CARD,
+  payload: { panelIdx, text }
+});

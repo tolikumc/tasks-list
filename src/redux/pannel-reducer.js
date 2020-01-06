@@ -1,5 +1,6 @@
 const ADD_PANEL = 'ADD_PANEL';
 const ADD_CARD = 'ADD_CARD';
+const DELETE_PANEL = 'DELETE_PANEL';
 
 const initialState = {
   panel: [
@@ -20,9 +21,15 @@ const panelReducer = (state = initialState, action) => {
       console.log(action);
       return {
         ...state,
-        panel: action.payload
+        panel: [...state.panel, { title: action.payload, cards: [] }]
+      };
+    case DELETE_PANEL:
+      return {
+        ...state,
+        panel: state.panel.filter((_, idx) => action.payload !== idx)
       };
     case ADD_CARD:
+      console.log(action);
       return {
         ...state,
         panel: state.panel.map((item, index) => {
@@ -49,4 +56,9 @@ export const addPanelAC = name => ({
 export const addCardAC = (panelIdx, text) => ({
   type: ADD_CARD,
   payload: { panelIdx, text }
+});
+
+export const deletePanelAC = panelIdx => ({
+  type: DELETE_PANEL,
+  payload: panelIdx
 });

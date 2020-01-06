@@ -1,9 +1,13 @@
 import React from 'react';
 import Panel from './index';
 import { connect } from 'react-redux';
-import { addCardAC, addPanelAC } from '../../redux/pannel-reducer';
+import {
+  addCardAC,
+  addPanelAC,
+  deletePanelAC
+} from '../../redux/pannel-reducer';
 
-const Panels = ({ panel, addPanel, addCard }) => {
+const Panels = ({ panel, addPanel, addCard, deletePanel }) => {
   return (
     <>
       {panel.map((item, idx) => (
@@ -14,9 +18,16 @@ const Panels = ({ panel, addPanel, addCard }) => {
           cards={item.cards}
           onAddCard={addCard}
           onAddPanel={addPanel}
+          isEmptyPanel={false}
+          deletePanel={deletePanel}
         />
       ))}
-      <Panel onAddPanel={addPanel} onAddCard={addCard} />
+      <Panel
+        onAddPanel={addPanel}
+        onAddCard={addCard}
+        isEmptyPanel={true}
+        deletePanel={deletePanel}
+      />
     </>
   );
 };
@@ -27,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addCard: (panelIdx, text) => {
     dispatch(addCardAC(panelIdx, text));
+  },
+  deletePanel: panelIdx => {
+    dispatch(deletePanelAC(panelIdx));
   }
 });
 

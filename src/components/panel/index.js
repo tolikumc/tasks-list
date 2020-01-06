@@ -5,13 +5,25 @@ import { AddForm } from '../add-form';
 import deleteImg from '../../static/img/wrong.svg';
 import classNames from 'classnames';
 
-const Panel = ({ title, cards, onAddCard, onAddPanel, panelIdx }) => {
+const Panel = ({
+  title,
+  cards,
+  onAddCard,
+  onAddPanel,
+  panelIdx,
+  isEmptyPanel,
+  deletePanel
+}) => {
   return (
     <div className={classNames('panel', { 'panel--empty': !cards })}>
       {title && (
         <div className="panel__title">
           <b>{title}</b>
-          <img src={deleteImg} alt="delete" />
+          <img
+            src={deleteImg}
+            alt="delete"
+            onClick={() => deletePanel(panelIdx)}
+          />
         </div>
       )}
       {cards && (
@@ -22,7 +34,7 @@ const Panel = ({ title, cards, onAddCard, onAddPanel, panelIdx }) => {
         </div>
       )}
       <AddForm
-        isEmptyPanel={cards}
+        isEmptyPanel={isEmptyPanel}
         panelIdx={panelIdx}
         onAddPanel={onAddPanel}
         onAddCard={onAddCard}

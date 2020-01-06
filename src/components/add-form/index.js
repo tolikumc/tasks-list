@@ -18,12 +18,12 @@ export const AddForm = ({ isEmptyPanel, onAddPanel, onAddCard, panelIdx }) => {
 
   const onAdd = () => {
     if (isEmptyPanel) {
-      onAddCard(panelIdx, value);
-      setValue('');
-      setShow(false);
-    } else {
       onAddPanel(value);
+    } else {
+      onAddCard(panelIdx, value);
     }
+    setValue('');
+    setShow(false);
   };
 
   return (
@@ -38,13 +38,13 @@ export const AddForm = ({ isEmptyPanel, onAddPanel, onAddCard, panelIdx }) => {
                 rows="3"
                 ref={inputRef}
                 placeholder={
-                  isEmptyPanel ? 'Enter task name' : 'Enter panel name'
+                  isEmptyPanel ? 'Enter panel name' : 'Enter task name'
                 }
               />
             </Card>
             <div className="add-form__bottom">
               <Button click={onAdd}>
-                {isEmptyPanel ? 'Enter task name' : 'Enter panel name'}
+                {isEmptyPanel ? 'Enter panel name' : 'Enter task name'}
               </Button>
               <img
                 src={wrong}
@@ -62,7 +62,7 @@ export const AddForm = ({ isEmptyPanel, onAddPanel, onAddCard, panelIdx }) => {
             onClick={() => setShow(true)}
           >
             <img src={addIcon} alt="plus" />
-            <span>{isEmptyPanel ? 'Enter task name' : 'Enter panel name'}</span>
+            <span>{isEmptyPanel ? 'Enter panel name' : 'Enter task name'}</span>
           </div>
         </div>
       )}

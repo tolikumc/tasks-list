@@ -8,6 +8,11 @@ import {
 } from '../../redux/pannel-reducer';
 
 const Panels = ({ panel, addPanel, addCard, deletePanel }) => {
+  const onRemove = pannelIdx => {
+    if (global.confirm('Are you sure?')) {
+      deletePanel(pannelIdx);
+    }
+  };
   return (
     <>
       {panel.map((item, idx) => (
@@ -19,7 +24,7 @@ const Panels = ({ panel, addPanel, addCard, deletePanel }) => {
           onAddCard={addCard}
           onAddPanel={addPanel}
           isEmptyPanel={false}
-          deletePanel={deletePanel}
+          onRemove={onRemove}
         />
       ))}
       <Panel

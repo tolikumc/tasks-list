@@ -12,7 +12,7 @@ const Panel = ({
   onAddPanel,
   panelIdx,
   isEmptyPanel,
-  deletePanel
+  onRemove
 }) => {
   return (
     <div className={classNames('panel', { 'panel--empty': !cards })}>
@@ -22,7 +22,7 @@ const Panel = ({
           <img
             src={deleteImg}
             alt="delete"
-            onClick={() => deletePanel(panelIdx)}
+            onClick={() => onRemove(panelIdx)}
           />
         </div>
       )}

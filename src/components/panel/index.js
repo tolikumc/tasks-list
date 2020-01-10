@@ -4,6 +4,7 @@ import Card from '../card';
 import { AddForm } from '../add-form';
 import deleteImg from '../../static/img/wrong.svg';
 import classNames from 'classnames';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const Panel = ({
   title,
@@ -12,8 +13,19 @@ const Panel = ({
   onAddPanel,
   panelIdx,
   isEmptyPanel,
-  onRemove
+  onRemove,
+  reorderCard
 }) => {
+  const onDragEnd = ({ source, destination }) => {
+    if (!destination) {
+      return;
+    }
+    reorderCard({
+      panelIdx,
+      sourceIndex: source.index,
+      destinationIndex: destination.index
+    });
+  };
   return (
     <div className={classNames('panel', { 'panel--empty': !cards })}>
       {title && (
@@ -27,11 +39,36 @@ const Panel = ({
         </div>
       )}
       {cards && (
-        <div className="panel__items">
-          {cards.map((item, index) => (
-            <Card key={index}>{item}</Card>
-          ))}
-        </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId={`droppable-${panelIdx}`}>
+            {provided => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {cards.map((item, index) => (
+                  <Draggable
+                    key={item}
+                    draggableId={`card${index}`}
+                    index={index}
+                  >
+                    {provided => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className="panel__items"
+                      >
+                        <Card key={index}>{item}</Card>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+
+        // <div className="panel__items">
+        // </div>
       )}
       <AddForm
         isEmptyPanel={isEmptyPanel}

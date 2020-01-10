@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import {
   addCardAC,
   addPanelAC,
-  deletePanelAC
+  deletePanelAC,
+  reorderCardAC
 } from '../../redux/pannel-reducer';
 
-const Panels = ({ panel, addPanel, addCard, deletePanel }) => {
+const Panels = ({ panel, addPanel, addCard, deletePanel, reorderCard }) => {
   const onRemove = pannelIdx => {
     if (global.confirm('Are you sure?')) {
       deletePanel(pannelIdx);
@@ -25,6 +26,7 @@ const Panels = ({ panel, addPanel, addCard, deletePanel }) => {
           onAddPanel={addPanel}
           isEmptyPanel={false}
           onRemove={onRemove}
+          reorderCard={reorderCard}
         />
       ))}
       <Panel
@@ -46,6 +48,9 @@ const mapDispatchToProps = dispatch => ({
   },
   deletePanel: panelIdx => {
     dispatch(deletePanelAC(panelIdx));
+  },
+  reorderCard: (panelIdx, sourceIndex, destinationIndex) => {
+    dispatch(reorderCardAC(panelIdx, sourceIndex, destinationIndex));
   }
 });
 
